@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ripple and Recall Design System - Where Every Memory Leaves a Mark */
+
+@layer base {
+  :root {
+    /* Primary Brand Colors - Soft Ocean Blues */
+    --background: 220 38% 97%;
+    --foreground: 230 15% 15%;
+
+    --card: 220 50% 98%;
+    --card-foreground: 230 15% 15%;
+
+    --popover: 220 50% 98%;
+    --popover-foreground: 230 15% 15%;
+
+    /* Primary - Deep Ocean Blue */
+    --primary: 210 55% 45%;
+    --primary-foreground: 220 50% 98%;
+    --primary-glow: 210 55% 65%;
+
+    /* Secondary - Soft Lavender */
+    --secondary: 250 30% 92%;
+    --secondary-foreground: 230 15% 25%;
+
+    /* Muted - Gentle Grays */
+    --muted: 220 20% 95%;
+    --muted-foreground: 220 15% 55%;
+
+    /* Accent - Blush Pink */
+    --accent: 340 40% 90%;
+    --accent-foreground: 340 55% 35%;
+
+    /* Destructive - Soft Coral */
+    --destructive: 15 65% 60%;
+    --destructive-foreground: 220 50% 98%;
+
+    /* Borders and Inputs */
+    --border: 220 25% 88%;
+    --input: 220 25% 90%;
+    --ring: 210 55% 45%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --success: 145 65% 50%;
+    --success-foreground: 220 50% 98%;
+    --warning: 45 85% 60%;
+    --warning-foreground: 45 15% 15%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(210 55% 45% / 0.1), hsl(250 40% 70% / 0.1));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(220 30% 96%));
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px hsl(var(--primary) / 0.1);
+    --shadow-glow: 0 0 25px hsl(var(--primary-glow) / 0.3);
+    --shadow-card: 0 8px 30px hsl(220 20% 50% / 0.08);
+
+    /* Animation */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .dark {
+    /* Dark Mode - Midnight Ocean */
+    --background: 230 25% 8%;
+    --foreground: 220 20% 92%;
+
+    --card: 230 25% 10%;
+    --card-foreground: 220 20% 92%;
+
+    --popover: 230 25% 10%;
+    --popover-foreground: 220 20% 92%;
+
+    /* Primary - Moonlit Blue */
+    --primary: 210 60% 70%;
+    --primary-foreground: 230 25% 8%;
+    --primary-glow: 210 60% 80%;
+
+    /* Secondary - Dark Lavender */
+    --secondary: 250 20% 18%;
+    --secondary-foreground: 220 20% 88%;
+
+    /* Muted - Deep Grays */
+    --muted: 230 20% 15%;
+    --muted-foreground: 220 15% 65%;
+
+    /* Accent - Soft Rose */
+    --accent: 340 30% 20%;
+    --accent-foreground: 340 40% 85%;
+
+    /* Destructive - Coral */
+    --destructive: 15 60% 55%;
+    --destructive-foreground: 220 20% 92%;
+
+    /* Borders and Inputs */
+    --border: 230 20% 20%;
+    --input: 230 20% 18%;
+    --ring: 210 60% 70%;
+
+    /* Custom Tokens for Dark Mode */
+    --success: 145 55% 55%;
+    --warning: 45 75% 65%;
+    
+    /* Dark Mode Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-hero: linear-gradient(135deg, hsl(210 60% 70% / 0.1), hsl(250 40% 60% / 0.1));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(230 20% 12%));
+    
+    /* Dark Shadows */
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 25px hsl(var(--primary-glow) / 0.2);
+    --shadow-card: 0 8px 30px hsl(0 0% 0% / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  /* Ripple Animation */
+  .ripple-animation {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple-animation::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--primary-glow) / 0.3) 0%, transparent 70%);
+    animation: ripple 3s infinite;
+    transform: translate(-50%, -50%);
+  }
+
+  @keyframes ripple {
+    0% {
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      width: 400px;
+      height: 400px;
+      opacity: 0;
+    }
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: hsla(var(--card) / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Glow Effects */
+  .glow-soft {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-hover {
+    transition: var(--transition-smooth);
+  }
+
+  .glow-hover:hover {
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Text Styles */
+  .text-poetic {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Button Variants */
+  .btn-magic {
+    background: var(--gradient-primary);
+    color: hsl(var(--primary-foreground));
+    border: none;
+    transition: var(--transition-spring);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-magic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsla(255 255 255 / 0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-magic:hover::before {
+    left: 100%;
+  }
+
+  .btn-magic:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+}
